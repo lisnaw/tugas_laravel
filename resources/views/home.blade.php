@@ -7,7 +7,25 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body style="background-color: #abc8e2;">
+    <style>
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid rgb(255, 255, 255);
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #85a3ca;
+        }
+    </style>
+
+<body style="background-color: #a3cdf1;">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
@@ -21,7 +39,7 @@
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
+                    <a class="nav-link" href="#tabelbuku">daftar Buku</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
@@ -30,46 +48,41 @@
         </div>
     </div>
 </nav>
-<div class="hero" style="background-color: #91bbe7; color: white; padding: 60px 0; text-align: center; width: 100%; height: 50vh; display: flex; align-items: center; justify-content: center; margin: 0;">
+<div class="hero" style="background-color: #91bbe7; color: white; padding: 60px 0; text-align: center; width: 100%; height: 60vh; display: flex; align-items: center; justify-content: center; margin: 0;">
     <div class="container" style="max-width: 2140px; width: 100%;">
         <h1>Hallow</h1>
         <h2>Selamat Datang</h2>
         <p>"Bergabunglah dengan kami dan temukan cara baru untuk menjelajahi dunia digital."</p>
-        <a href="#features" class="btn btn-light btn-lg">Get Started</a>
+        <a href="#tabelbuku" class="btn btn-light btn-lg">Lihat Selengkapnyua</a>
     </div>
 </div>
 
 
+{{-- table buku --}}
+<section id="tabelbuku">
+    <h1 style="text-align: center; padding: 60px 0;">Daftar Buku</h1>
 
-<section id = "features" style="margin: 0; padding: 0; background-color: #f0f0f0; height: 50vh; display: flex; flex-direction: column; justify-content: center;">
-    <h2 class="text-center" style="margin-top: 40px;">Features</h2>
-    <div class="row" style="align-items: center; height: 100%; margin: 0;">
-        <div class="col-md-4" style="display: flex; justify-content: center;">
-            <div class="card" style="margin-bottom: 20px; width: 100%;">
-                <div class="card-body">
-                    <h5 class="card-title">Feature 1</h5>
-                    <p class="card-text">Description for feature 1 goes here. This feature is amazing!</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4" style="display: flex; justify-content: center;">
-            <div class="card" style="margin-bottom: 20px; width: 100%;">
-                <div class="card-body">
-                    <h5 class="card-title">Feature 2</h5>
-                    <p class="card-text">Description for feature 2 goes here. This feature is fantastic!</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4" style="display: flex; justify-content: center;">
-            <div class="card" style="margin-bottom: 20px; width: 100%;">
-                <div class="card-body">
-                    <h5 class="card-title">Feature 3</h5>
-                    <p class="card-text">Description for feature 3 goes here. This feature is incredible!</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Judul Buku</th>
+            <th>Penulis</th>
+            <th>Tahun Terbit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($books as $index => $book)
+        <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ $book['title'] }}</td>
+            <td>{{ $book['author'] }}</td>
+            <td>{{ $book['year'] }}</td>
+        </tr>
+        @endforeach
+    </tbody>
+</section>
+</table>
 
 <!-- Copyright -->
  <footer class="bg-dark text-white text-center text-lg-start">
