@@ -84,6 +84,16 @@
 </section>
 </table>
 
+<!-- Tampilkan pesan dari form jika ada -->
+    @if(session('message'))
+        <div class="alert alert-danger mt-4" style="background-color:#faecf4; ">
+            <h4>Pesan dari Form:</h4>
+            <p>{{ session('message') }}</p>
+        </div>
+    @endif
+
+
+
 <!-- Copyright -->
  <footer class="bg-dark text-white text-center text-lg-start">
         <div class="text-center p-3">

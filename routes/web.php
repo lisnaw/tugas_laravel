@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\BukuController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -11,3 +10,9 @@ Route::get('/', function () {
 Route::get('/home', [HomeController::class, "index"] );
 
 
+// hari ini
+Route::get('/from', function () {
+    return view('from');
+});
+
+Route::post("/submit",[HomeController::class, "from"]);

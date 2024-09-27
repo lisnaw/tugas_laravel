@@ -20,4 +20,20 @@ class HomeController extends Controller
         // Mengirim data buku ke view 'home'
         return view('home', ['books' => $books]);
     }
+
+
+// hari ini
+
+
+    public function from(Request $request) {
+        // Ambil data message dari request
+        $dataMessage = $request->message;
+
+        // Simpan data ke session
+        $request->session()->put('message', $dataMessage);
+
+        // Redirect ke halaman home
+        return redirect('/home');
+    }
 }
+
