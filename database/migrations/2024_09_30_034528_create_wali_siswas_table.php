@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->integer("siswa_id")->Unique();
             $table->string("nama_wali",30);
-            $table->integer("NIK");
+            $table->integer("NIK")->unique();
             $table->string("hubungan",20);
             $table->integer("no_telepon")->unique();
             $table->timestamps();
