@@ -6,17 +6,38 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Daftar Produk</title>
     <style>
+
+    body{
+        background-color: #bcd7e0
+    }
         table {
-            width: 100%;
+            width: 70%;
             border-collapse: collapse;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            color: #4b879c;
         }
         th, td {
-            border: 1px solid rgb(181, 114, 114);
-            padding: 8px;
+            border: 1px solid rgb(37, 78, 135);
+            padding: 4px;
             text-align: left;
+            font-size: 20px;
         }
         th {
             background-color: #f2f2f2;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        button {
+            padding: 8px 12px;
+            font-size: 16px;
+            color: #000000;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -25,25 +46,34 @@
     <table>
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Nama</th>
-                <th>stok</th>
-                <th>harga</th>
+                <th>Stok</th>
+                <th>Harga</th>
                 <th>Deskripsi</th>
-                <th>created_at</th> <!-- Kolom untuk created_at -->
-                <th>updated_at</th> <!-- Kolom untuk updated_at -->
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($Product as $product) <!-- Pastikan variabel tidak memiliki nama yang sama dengan model -->
+            @foreach ($Product as $Product)
                 <tr>
-                    <td>{{ $product->id }}</td> <!-- Tampilkan ID produk -->
-                    <td>{{ $product->nama }}</td>
-                    <td>{{ $product->stok }}</td>
-                    <td>{{ $product->harga }}</td>
-                    <td>{{ $product->deskripsi }}</td>
-                    <td>{{ $product->created_at }}</td>
-                    <td>{{ $product->updated_at }}</td>
+                    <td>{{ $Product->nama }}</td>
+                    <td>{{ $Product->stok }}</td>
+                    <td>{{ $Product->harga }}</td>
+                    <td>{{ $Product->deskripsi }}</td>
+                    <td>
+                        <!-- Bungkus kedua tombol dalam div dengan kelas "action-buttons" -->
+                        <div class="action-buttons">
+                            <form action="/product/{{ $Product->id }}/edit" method="GET">
+                                <button type="submit">Edit</button>
+                            </form>
+
+                            <form action="/product/{{ $Product->id }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">Hapus</button>
+                            </form>
+                        </div>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

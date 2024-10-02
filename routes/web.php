@@ -10,16 +10,22 @@ Route::get('/', function () {
 Route::get('/home', [HomeController::class, "index"] );
 
 
-// hari ini
 Route::get('/from', function () {
     return view('from');
 });
-
 Route::post("/submit",[HomeController::class, "from"]);
 
 
-
-// tambahkan 1 okto
 Route::get("/create", [HomeController::class, "store"]);
+Route::get("/create2", [HomeController::class, "store2"]);
+Route::get("/create3", [HomeController::class, "store3"]);
+Route::get("/create4", [HomeController::class, "store4"]);
 
 Route::get("/show", [HomeController::class, "show"]);
+
+
+// 2 okto
+Route::get('/product/{id}/edit', [HomeController::class,"edit"]);
+
+Route::put('/product/{id}', [HomeController::class, 'update']);
+Route::delete('/product/{id}', [HomeController::class, 'destroy']);
