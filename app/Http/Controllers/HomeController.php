@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\product;
 
+
 class HomeController extends Controller
 {
     public function index()
@@ -83,10 +84,10 @@ class HomeController extends Controller
         return ("data sukses dikirim");
     }
 
-    public function show(){
-    $Product = Product::all();
+   public function show(){
+    $Product = Product::paginate(3);
     return view("tableProduct", compact("Product"));
-    }
+}
 
 
     // 2okotoberr
