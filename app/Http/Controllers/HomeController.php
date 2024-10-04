@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\product;
+use Illuminate\Support\Facades\Validator;
 
 
 class HomeController extends Controller
@@ -41,48 +42,30 @@ class HomeController extends Controller
 
 // tambahan 1 okto
 
-    public function store(){
+    public function store(Request $request){
+
+        $validator = validator::make($request->all(), [
+            'nama' => 'required|string|max:225',
+            'stok' => 'required|integer|min:50',
+            'harga' => 'required|numeric|min:2',
+            'deskripsi' => 'nullable|string',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         $Product = new product();
-        $Product->nama = "Laptop";
-        $Product->harga = "10000000";
-        $Product->stok = "10";
-        $Product->deskripsi = "laptop murah";
+        $Product->nama = $request->nama;
+        $Product->harga = $request->harga;
+        $Product->stok = $request->stok;
+        $Product->deskripsi = $request->deskripsi;
         $Product->save();
 
-        return ("data sukses dikirim");
+        return redirect()->back();
     }
 
-    public function store2(){
-        $Product = new product();
-        $Product->nama = "Handphone";
-        $Product->harga = "40000";
-        $Product->stok = "5";
-        $Product->deskripsi = "Hp Samsung";
-        $Product->save();
 
-        return ("data sukses dikirim");
-    }
-
-    public function store3(){
-        $Product = new product();
-        $Product->nama = "Televisi";
-        $Product->harga = "2000000";
-        $Product->stok = "7";
-        $Product->deskripsi = "TV Lcd";
-        $Product->save();
-
-        return ("data sukses dikirim");
-    }
-    public function store4(){
-        $Product = new product();
-        $Product->nama = "Kulkas";
-        $Product->harga = "7000000";
-        $Product->stok = "3";
-        $Product->deskripsi = "kulkas sharf";
-        $Product->save();
-
-        return ("data sukses dikirim");
-    }
 
    public function show(){
     $Product = Product::paginate(3);
@@ -96,6 +79,8 @@ class HomeController extends Controller
     // @dd($Product);
     return view("editProduct", compact("Product"));
     }
+
+
 
     public function update(Request $request, $id){
         $Product = Product::findOrFail($id);
@@ -114,5 +99,9 @@ class HomeController extends Controller
         $Product->delete();
 
         return redirect('/show');
+    }
+
+    public function input(){
+        return view("inputProduct");
     }
 }
