@@ -62,7 +62,7 @@ class HomeController extends Controller
         $Product->deskripsi = $request->deskripsi;
         $Product->save();
 
-        return redirect()->back();
+        return redirect('/show');
     }
 
 

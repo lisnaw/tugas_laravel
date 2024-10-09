@@ -12,7 +12,7 @@
         font-family: Arial, sans-serif;
     }
     table {
-        width: 70%;
+        width: 100%;
         border-collapse: collapse;
         margin: 40px auto;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -77,6 +77,10 @@
 </head>
 <body>
     <h1>Daftar Produk</h1>
+
+     <a href="{{ url('/input') }}">
+        <button style="text-align" type="button">Tambah </button>
+    </a>
     <table>
         <thead>
             <tr>
