@@ -32,7 +32,6 @@ Route::delete('/product/{id}', [HomeController::class, 'destroy']);
 Route::get('/input', [HomeController::class, 'input']);
 
 
-
 Route::get('/ktp', [DaftarController::class, 'index']);
 Route::get('pengguna/create', [DaftarController::class, 'create']);
 Route::post('pengguna/store', [DaftarController::class, 'store']);
