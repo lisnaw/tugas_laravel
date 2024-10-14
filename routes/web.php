@@ -4,7 +4,9 @@ use App\Http\Controllers\DaftarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RelasiController;
 use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\PdfController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -36,3 +38,6 @@ Route::get('/ktp', [DaftarController::class, 'index']);
 Route::get('pengguna/create', [DaftarController::class, 'create']);
 Route::post('pengguna/store', [DaftarController::class, 'store']);
 Route::get('/school', [SchoolController::class, 'index']);
+
+Route::get('/download', [PdfController::class, 'generatePDF']);
+Route::get('/stream', [PdfController::class, 'streamPDF']);
